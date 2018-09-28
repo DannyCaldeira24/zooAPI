@@ -99,8 +99,33 @@ function login(req,res){
 
 }
 
+function updateUser(req,res){
+	var userId = req.params.id;
+	var update = req.body;
+
+	if(userId != req.user.sub){
+		return res.status(500).send({message:'No tienes permiso para actualizar el usuario'});
+	}
+
+	User.findByIdAndUpdate(userId, update, {new:true}, (err,userUpdated) =>{
+		if(err){
+			res.status(500).send({
+				message: 'ERROR: Algo malo ha ocurrido'
+			});
+		}else{
+			if(!userUpdated){
+				return res.status(404).send({message:'ERROR: No se logro actualizar su usuario'});
+			}else{
+				res.status(200).send({user:userUpdated});
+			}
+		}
+	});
+
+}
+
 module.exports={
 	pruebas,
 	saveUser,
-	login
+	login,
+	updateUser
 }
