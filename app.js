@@ -12,6 +12,7 @@ var animal_routes = require('./routes/animal');
 //middlewares de body-parser
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+var configMensaje = require('./configMensaje');
 
 //Configurar cabeceras y cors
 app.use((req, res, next) =>{
@@ -21,6 +22,11 @@ app.use((req, res, next) =>{
 	res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
 	next();
 });
+
+app.post('/formulario', (req, res) => {
+ configMensaje(req.body);
+ res.status(200).send();
+})
 
 //rutas base
 app.use('/api', user_routes);

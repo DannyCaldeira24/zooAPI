@@ -54,7 +54,7 @@ function saveUser(req,res){
 						});
 					});
 				}else{
-					res.status(500).send({message: 'ERROR: Ya existe un usuario con este correo electronico'});
+					res.status(200).send({message: 'ERROR: Ya existe un usuario con este correo electronico'});
 				}
 			}
 		});
@@ -86,13 +86,13 @@ function login(req,res){
 							res.status(200).send({user});
 						}
 					}else{
-					res.status(404).send({
+					res.status(200).send({
 						message: 'Clave invalida'
 					});
 					}
 				});
 			}else{
-				res.status(404).send({
+				res.status(200).send({
 					message: 'Correo invalido'
 				});
 			}
@@ -188,7 +188,7 @@ function getKeepers(req, res){
 			res.status(500).send({message:'Error en la petición'});
 		}else{
 			if(!users){
-				res.status(404).send({message:'No hay cuidadores'});
+				res.status(200).send({message:'No hay cuidadores'});
 			}else{
 				res.status(200).send({users});
 			}
