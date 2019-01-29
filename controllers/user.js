@@ -177,7 +177,8 @@ function getImageFile(req, res){
 		if(exists){
 			res.sendFile(path.resolve(path_file));
 		}else{
-			res.status(404).send({message:'La imagen no existe'});
+			res.sendFile(path.resolve('./uploads/users/noimage.png'));
+			// res.status(404).send({message:'La imagen no existe'});
 		}
 	});
 }
