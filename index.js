@@ -12,7 +12,7 @@ const DB_URI = process.env.DB_URI || 'mongodb://localhost:27017/zoo_db';
 // var PORT = process.env.PORT || 0;
 app.set('port', process.env.PORT || 3000);
 mongoose.Promise = global.Promise;
-mongoose.connect(DB_URI, { useNewUrlParser: true })
+mongoose.connect('mongodb://dannycaldeira25:Da12345@ds159993.mlab.com:59993/zoo_db', { useNewUrlParser: true })
 		.then(()=>{
 			console.log('La conexión a la base de datos zoo se ha realizado correctamente..');
 			let server = app.listen(app.get('port'), () => {
